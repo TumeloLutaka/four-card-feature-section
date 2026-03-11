@@ -19,13 +19,11 @@
   /* ## Typography */
 
   /* ### Body Copy */
-  --fs-13: 13px;
-  --fs-15: 0.9375rem;
-  --fs-20: 1.25rem;
-  --fs-24: 1.5rem;
-  --fs-: 36px;
-
-  --fs-base: var(var(--fs-15));
+  --fs-sm: 13px;
+  --fs-base: 0.9375rem;
+  --fs-md: 1.25rem;
+  --fs-lg: 1.5rem;
+  --fs--xlg: 2.25rem;
 
   /* Font Weight */
   --fw-light: 200;
@@ -62,12 +60,21 @@ main {
 .card {
   position: relative;
 
-  height: 250px;
+  min-height: 15.625rem;
   max-width: 314px;
   padding: var(--spacing-400);
   box-shadow: 0 15px 30px -11px hsla(213, 47%, 67%, 0.5);
   border-radius: var(--spacing-100);
   overflow: hidden;
+}
+
+.card__band {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  height: 4px;
 }
 
 .card:nth-child(1) .card__band {
@@ -83,14 +90,7 @@ main {
   background-color: var(--col-blue);
 }
 
-.card__band {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
 
-  height: 4px;
-}
 
 .card__img {
   display: block;
@@ -100,13 +100,13 @@ main {
 }
 
 .card__text {
-  font-size: var(--fs-13);
+  font-size: var(--fs-sm);
   line-height: 1.6;
   letter-spacing: 0.005625em;
 }
 
 .card__title {
-  font-size: var(--fs-20);
+  font-size: var(--fs-md);
   font-weight: var(--fw-bold);
   line-height: 1.35;
 }
@@ -134,14 +134,14 @@ main {
 }
 
 .title > p {
-  font-size: var(--fs-15);
+  font-size: var(--fs-base);
   line-height: 1.4;
   letter-spacing: 0.00625em;
   text-align: center;
 }
 
 .title__heading {
-  font-size: var(--fs-24);
+  font-size: var(--fs-lg);
   font-weight: var(--fw-light);
   text-align: center;
   line-height: 1.4;
@@ -154,6 +154,10 @@ main {
 }
 
 @media (min-width: 48em) {
+  .title__heading {
+    font-size: var(--fs--xlg);
+  }
+
   .card:nth-child(1),
   .card:nth-child(4) {
     grid-column: 1 / -1; /* span full width */
@@ -162,11 +166,11 @@ main {
 
   .cards {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(3, auto);
+    grid-template-rows: repeat(3, 1fr);
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 90rem) {
   .card:nth-child(1) {
     grid-column: 1;
     grid-row: 1 / -1;
@@ -187,7 +191,7 @@ main {
   } /* spans both rows */
 
   .cards {
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr 1fr;
   }
 }
